@@ -2,5 +2,7 @@ package depParsing;
 import java.util.*;
 
 public interface DPInterface {
-	ArrayList<Map.Entry<String, Integer>> getDepTree(String tweet);
+	void parseTweetText(String tweet);
+	ArrayList<Map.Entry<String, Integer>> getDepTree();
+	ArrayList<Map.Entry<String, String>> getPOSTags();
 }

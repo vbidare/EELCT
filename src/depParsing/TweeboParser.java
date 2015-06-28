@@ -5,6 +5,8 @@ import java.util.*;
 public class TweeboParser implements DPInterface {
 	
 	private String tweetText;
+	ArrayList<Map.Entry<String, Integer>> tree;
+	ArrayList<Map.Entry<String, String>> pos;
 
 	private String execParser() {
 		try {
@@ -24,20 +26,21 @@ public class TweeboParser implements DPInterface {
 		}
 	}
 	
-	private ArrayList<Map.Entry<String, Integer>> parseOutFile(String filename) {
+	private void parseOutFile(String filename) {
 		File outFile = new File(filename);
 		if (!outFile.exists()) {
-			return null;
+			return;
 		}
 		BufferedReader fileData = null;
 		try {
 			fileData = new BufferedReader(new FileReader(outFile));
 		} catch (Exception e) {
 			System.err.println(e);
-			return null;
+			return;
 		}
 		
-		ArrayList<Map.Entry<String, Integer>> tree = new ArrayList<Map.Entry<String, Integer>>();
+		tree = new ArrayList<Map.Entry<String, Integer>>();
+		pos = new ArrayList<Map.Entry<String, String>>();
 		String line;
 		String[] columns;
 		
@@ -45,6 +48,7 @@ public class TweeboParser implements DPInterface {
 			while((line = fileData.readLine()) != null && !line.equals("")) {
 				columns = line.split("\t");
 				tree.add(new AbstractMap.SimpleEntry<String, Integer>(columns[1], new Integer(columns[6])));
+				pos.add(new AbstractMap.SimpleEntry<String, String>(columns[1], columns[4]));
 			}
 		} catch (Exception e) {
 			System.err.println(e);
@@ -56,17 +60,23 @@ public class TweeboParser implements DPInterface {
 		} catch (Exception e) {
 			System.err.println(e);
 		}
-		return tree;
+		return;
 	}
 	
-	public ArrayList<Map.Entry<String, Integer>> getDepTree(String tweet) {
-		
+	public ArrayList<Map.Entry<String, Integer>> getDepTree() {
+		return tree;
+	}
+
+	public ArrayList<Map.Entry<String, String>> getPOSTags() {
+		return pos;
+	}
+
+	public void parseTweetText(String tweet) {
 		tweetText = tweet;
 		
 		String filename = execParser();
+		parseOutFile(filename);
 		
-		ArrayList<Map.Entry<String, Integer>> tree = parseOutFile(filename);
-		
-		return tree;
+		return;
 	}
 }

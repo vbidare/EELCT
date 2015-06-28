@@ -13,6 +13,7 @@ public class Data {
     public ArrayList<String> category;     //Category could be single, keeping array list to make it extensible in future
     public ArrayList<String> tags;         //Tags associated with the tweet
     public ArrayList<String> hashtags;     //Hashtags mentioned in the tweet
+    public ArrayList<Map.Entry<String, String>> pos;	//POS tags for the tweet
     public ArrayList<Map.Entry<String, Integer>> tree;	//Dependency tree for the tweet
     public ArrayList<Map.Entry<String, String>> hashtagExpanded;	//Dependency tree for the tweet
 
@@ -47,6 +48,10 @@ public class Data {
         text += hashtagExpanded.toString();
         text += "\n";
         
+        text += "\nPOS tags :\n";
+        text += pos.toString();
+        text += "\n";
+
         text += "\nDependency tree :\n";
         text += tree.toString();
         text += "\n";

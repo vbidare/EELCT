@@ -53,8 +53,10 @@ public class Main {
         // Dependency parsing
         DPFactory depFactory = new DPFactory();
         DPInterface DParser = depFactory.getParser("Tweebo");
-        data.tree = DParser.getDepTree(data.text);
-        
+        DParser.parseTweetText(data.text);
+        data.tree = DParser.getDepTree();
+        data.pos = DParser.getPOSTags();
+
         System.out.print(data);
     }
 }
