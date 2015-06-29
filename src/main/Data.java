@@ -1,5 +1,5 @@
 package main;
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  * Created by veerendra on 11/6/15.
@@ -12,6 +12,11 @@ public class Data {
     public ArrayList<Entity> entitiesList; //List of objects of class Entity
     public ArrayList<String> category;     //Category could be single, keeping array list to make it extensible in future
     public ArrayList<String> tags;         //Tags associated with the tweet
+    public ArrayList<String> hashtags;     //Hashtags mentioned in the tweet
+    public ArrayList<Map.Entry<String, String>> pos;	//POS tags for the tweet
+    public ArrayList<Map.Entry<String, Integer>> tree;	//Dependency tree for the tweet
+    public ArrayList<Map.Entry<String, String>> hashtagExpanded;	//Dependency tree for the tweet
+    public ArrayList<String> sentimentOfTweets;
 
     public Data(String tweet){
         this.text = tweet;
@@ -35,7 +40,30 @@ public class Data {
         for (String s: tags){
             text += s + "\n";
         }
+
+        text += "\nSentiment :\n";
+        if(sentimentOfTweets.isEmpty())
+            text += "Sentiment is Empty \n";
+        for (String s: sentimentOfTweets){
+            text += s + "\n";
+        }
+        
+        text += "\nHashtags :\n";
+        text += hashtags.toString();
         text += "\n";
+        
+        text += "\nExpanded Hashtags :\n";
+        text += hashtagExpanded.toString();
+        text += "\n";
+        
+        text += "\nPOS tags :\n";
+        text += pos.toString();
+        text += "\n";
+
+        text += "\nDependency tree :\n";
+        text += tree.toString();
+        text += "\n";
+        
         return text;
     }
 }
