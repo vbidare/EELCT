@@ -44,6 +44,7 @@ public class AlchemyNER implements NERInterface {
             br.close();
 //            System.out.println(res);
 
+            dataObject.hashtags = new ArrayList<String>();
             JSONObject obj = new JSONObject(res);
             if(obj.getString("status").equals("OK")){
                 if(obj.getString("language").equals("english")){
@@ -56,6 +57,9 @@ public class AlchemyNER implements NERInterface {
                         entity.relevance = Double.parseDouble(entityJSON.getString("relevance"));
                         entity.count = Integer.parseInt(entityJSON.getString("count"));
                         dataObject.entitiesList.add(entity);
+                        if (entity.type != null && entity.type.equalsIgnoreCase("Hashtag")) {
+                        	dataObject.hashtags.add(entityJSON.getString("text"));
+                        }
                     }
                 }else{
                     throw new Exception("Please provide english text!");
