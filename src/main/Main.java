@@ -42,8 +42,8 @@ public class Main {
         TagFactory tagfactory = new TagFactory();
         TagInterface tag = tagfactory.getTagger("ALCHEMY");
         tag.generateTags(data);
-//
-//        // Hashtag expansion
+        
+        // Hashtag expansion
         HashtagExpanderFactory HEfactory = new HashtagExpanderFactory();
         HashtagExpanderInterface HExpander = HEfactory.getExpander();
         data.hashtagExpanded = new ArrayList<Map.Entry<String, String>>();
@@ -78,7 +78,6 @@ public class Main {
             urlextractor.getContents(data,"http://t.co/BNQ0Jk5x1O");
         } catch (Exception e) {
             System.out.println("Connection timed out");
-//          e.printStackTrace();
         }
         
         System.out.print(data);

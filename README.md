@@ -4,14 +4,14 @@
 - Install the following jar files
   - gson: http://mvnrepository.com/artifact/com.google.code.gson/gson/2.3.1
   - org.json: https://code.google.com/p/org-json-java/downloads/list
-  - Apache tika: https://tika.apache.org/download.html
+  - Apache tika: https://tika.apache.org/download.html (tika-app)
 	
 - After that everything should work, hopefully!
 
 
 ## Setup for Entity and Chunk Extractor
 - The following package must be installed - 
-    i. twitter_nlp : https://github.com/aritter/twitter_nlp
+  - twitter_nlp : https://github.com/aritter/twitter_nlp
 - Make the environmet variable 'TWITTER_NLP' point to the installation directory. Make it usable system-wide and not user-specific.
     eg - If the project directory is - /home/veerendra/summer-project/EELCT2, then TWITTER_NLP should be set to '/home/veerendra/summer-project/EELCT2/twitter_nlp-master'
 - While using the above package, make sure that the static String 'BASE_DIR' in WashingtonChunkerAndER.java contain the

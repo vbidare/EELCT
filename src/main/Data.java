@@ -43,13 +43,13 @@ public class Data {
 
     public String toString(){
     	//naba
-        String text = "\n Entities: \n";
+        String text = "\nEntities :\n";
         for (Entity entity: entitiesList){
             text += "Name: " + entity.entityName + " Type: " + entity.type + " Rel: " + entity.relevance + " Count: " + entity.count + " KBLink: "+entity.knowledgeBaseLink+"\n";
         }
         
         // naba
-        text += "\nChunks \n";
+        text += "\nChunks :\n";
         if(chunkList.isEmpty()) System.out.println("Chunks list is empty");
         else
             for (String chunk : chunkList)
@@ -68,12 +68,14 @@ public class Data {
         }
 
         text += "\nSentiment :\n";
-        if(sentimentOfTweets == null || sentimentOfTweets.isEmpty())
+        if(sentimentOfTweets == null || sentimentOfTweets.isEmpty()) {
             text += "Sentiment is Empty \n";
-        else
+        }
+        else {
         	for (String s: sentimentOfTweets){
         		text += s + "\n";
         	}
+        }
         
         text += "\nHashtags :\n";
         text += (hashtags == null || hashtags.isEmpty()) ? "" : hashtags.toString();
@@ -89,6 +91,7 @@ public class Data {
 
         text += "\nDependency tree :\n";
         text += (tree == null || tree.isEmpty()) ? "" : tree.toString();
+        text += "\n";
 
         text += "\nUrl Extraction: \n";
         text += (urlContents == null || urlContents.equals("")) ? "" : urlContents;
