@@ -31,6 +31,17 @@ public class Main {
         TagFactory tagfactory = new TagFactory();
         TagInterface tag = tagfactory.getTagger("ALCHEMY");
         tag.generateTags(data);
+        
+        //Url Extractor
+        UrlExtractor urlextractor = new UrlExtractor();
+        try {
+            urlextractor.getContents(data,"http://t.co/BNQ0Jk5x1O");
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            System.out.println("Connection timed out");
+//          e.printStackTrace();
+        }
+        
         System.out.print(data);
 
 
