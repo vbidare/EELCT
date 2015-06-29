@@ -12,6 +12,7 @@ public class Data {
     public ArrayList<Entity> entitiesList; //List of objects of class Entity
     public ArrayList<String> category;     //Category could be single, keeping array list to make it extensible in future
     public ArrayList<String> tags;         //Tags associated with the tweet
+    public ArrayList<String> sentimentOfTweets;
 
     public Data(String tweet){
         this.text = tweet;
@@ -33,6 +34,13 @@ public class Data {
 
         text += "\nTags :\n";
         for (String s: tags){
+            text += s + "\n";
+        }
+
+        text += "\nSentiment :\n";
+        if(sentimentOfTweets.isEmpty())
+            text += "Sentiment is Empty \n";
+        for (String s: sentimentOfTweets){
             text += s + "\n";
         }
         text += "\n";

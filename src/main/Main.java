@@ -1,5 +1,7 @@
 package main;
 import linking.Linker;
+import sentimentAnalysis.SentimentAnalyzerFactory;
+import sentimentAnalysis.SentimentAnalyzerInterface;
 import tagging.TagFactory;
 import tagging.TagInterface;
 import classification.ClassifyFactory;
@@ -14,9 +16,9 @@ public class Main {
         //NER
 	    NERfactory neRfactory = new NERfactory();
         NERInterface NERIdentifier = neRfactory.getNER("ALCHEMY");
-        Data data = new Data("Nadal is the King of Clay");
-//        Data data = new Data("Sachin hit a century");
-//        Data data = new Data("Missing Dornier flight navigator's wife seeks PM");
+//        Data data = new Data("Nadal is the King of Clay");
+//        Data data = new Data("Sachin hit a century. That was Awesome !!!");
+        Data data = new Data("Paul Walker's death came to me as a terrible shock");
         NERIdentifier.getEntities(data);
 
         //Linking
@@ -31,8 +33,12 @@ public class Main {
         TagFactory tagfactory = new TagFactory();
         TagInterface tag = tagfactory.getTagger("ALCHEMY");
         tag.generateTags(data);
+
+        //Sentiment Analysis
+        SentimentAnalyzerFactory sentimentAnalyzerFactory= new SentimentAnalyzerFactory();
+        SentimentAnalyzerInterface sai = sentimentAnalyzerFactory.getSentimentAnalyzer("LIBSVM");
+        sai.getSentiment(data);
+
         System.out.print(data);
-
-
     }
 }
