@@ -9,6 +9,8 @@ import sentimentAnalysis.SentimentAnalyzerFactory;
 import sentimentAnalysis.SentimentAnalyzerInterface;
 import tagging.TagFactory;
 import tagging.TagInterface;
+import chunkAndEntityExtraction.ChunkerAndERFactory;
+import chunkAndEntityExtraction.ChunkerAndERInterface;
 import classification.ClassifyFactory;
 import classification.ClassifyInterface;
 import entityExtraction.NERInterface;
@@ -42,8 +44,8 @@ public class Main {
         TagFactory tagfactory = new TagFactory();
         TagInterface tag = tagfactory.getTagger("ALCHEMY");
         tag.generateTags(data);
-        
-        // Hashtag expansion
+//        
+//        // Hashtag expansion
         HashtagExpanderFactory HEfactory = new HashtagExpanderFactory();
         HashtagExpanderInterface HExpander = HEfactory.getExpander();
         data.hashtagExpanded = new ArrayList<Map.Entry<String, String>>(); 
@@ -64,13 +66,16 @@ public class Main {
         SentimentAnalyzerFactory sentimentAnalyzerFactory= new SentimentAnalyzerFactory();
         SentimentAnalyzerInterface sai = sentimentAnalyzerFactory.getSentimentAnalyzer("LIBSVM");
         sai.getSentiment(data);
+        
+        ChunkerAndERFactory cerFactory = new ChunkerAndERFactory();
+        ChunkerAndERInterface cer = cerFactory.getCERInstance("WASHINGTON");
+        cer.extractChunksAndEntity(data);
 
-	//Url Extractor
+        //Url Extractor
         UrlExtractor urlextractor = new UrlExtractor();
         try {
             urlextractor.getContents(data,"http://t.co/BNQ0Jk5x1O");
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             System.out.println("Connection timed out");
 //          e.printStackTrace();
         }

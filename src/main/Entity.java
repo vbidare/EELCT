@@ -13,4 +13,28 @@ public class Entity {
     public Entity(String entityName){
         this.entityName = entityName;
     }
+    
+    /**
+	 * Initializes a Entity object when name and type both are available
+	 * @param namedEntity
+	 * @param type
+	 */
+	public Entity (String namedEntity, String type)
+	{
+		this.entityName = namedEntity;
+		this.type = type;
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	public String toString ()
+	{
+		StringBuilder sb = new StringBuilder();
+		sb.append(this.type.toUpperCase());
+		sb.append(" : ");
+		sb.append (this.entityName);
+		
+		return sb.toString();
+	}
 }

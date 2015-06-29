@@ -57,6 +57,7 @@ public class LibSVMSentimentAnalyzer implements SentimentAnalyzerInterface {
                 s.add(sCurrentLine);
             }
             data.sentimentOfTweets = s;
+            br.close();
             return s;
         }catch (Exception e){
             System.out.println("Exception while reading Sentiment of the tweet");

@@ -1,6 +1,8 @@
 package main;
 import java.util.*;
 
+import main.Entity;
+
 /**
  * Created by veerendra on 11/6/15.
  * Intentionally keeping all attributes public, as scope is not very clear.
@@ -10,6 +12,7 @@ public class Data {
     public String text;                    //Tweet text to be processed
     public String language;
     public ArrayList<Entity> entitiesList; //List of objects of class Entity
+    public ArrayList<String> chunkList;  // list of chunks in the tweet
     public ArrayList<String> category;     //Category could be single, keeping array list to make it extensible in future
     public ArrayList<String> tags;         //Tags associated with the tweet
     public ArrayList<String> hashtags;     //Hashtags mentioned in the tweet
@@ -24,13 +27,32 @@ public class Data {
         entitiesList = new ArrayList<Entity>();
         category = new ArrayList<String>();
         tags = new ArrayList<String>();
-
+        chunkList = new ArrayList<String> ();
     }
+    
+    /**
+	 * initializes a data object from a tweet
+	 * @param tweet
+	 * @author abhinaba
+	 */
+	public void setEnititiesAndChunks (ArrayList<Entity> entityList, ArrayList<String> chunksList) 
+	{
+		this.entitiesList = entityList;
+		this.chunkList = chunksList;
+	}
 
     public String toString(){
-        String text = "";
+    	//naba
+        String text = "\n Entities: \n";
         for (Entity entity: entitiesList){
             text += "Name: " + entity.entityName + " Type: " + entity.type + " Rel: " + entity.relevance + " Count: " + entity.count + " KBLink: "+entity.knowledgeBaseLink+"\n";
+        }
+        
+        // naba
+        text += "\n Chunks \n";
+        for (String chunk : chunkList)
+        {
+        	text += chunk + "\n";
         }
 
         text += "\nClassification :\n";
@@ -44,29 +66,30 @@ public class Data {
         }
 
         text += "\nSentiment :\n";
-        if(sentimentOfTweets.isEmpty())
+        if(sentimentOfTweets == null || sentimentOfTweets.isEmpty())
             text += "Sentiment is Empty \n";
-        for (String s: sentimentOfTweets){
-            text += s + "\n";
-        }
+        else
+        	for (String s: sentimentOfTweets){
+        		text += s + "\n";
+        	}
         
         text += "\nHashtags :\n";
-        text += hashtags.toString();
+        text += (hashtags == null || hashtags.isEmpty()) ? "" : hashtags.toString();
         text += "\n";
         
         text += "\nExpanded Hashtags :\n";
-        text += hashtagExpanded.toString();
+        text += ( hashtagExpanded == null || hashtagExpanded.isEmpty()) ? "" : hashtagExpanded.toString();
         text += "\n";
         
         text += "\nPOS tags :\n";
-        text += pos.toString();
+        text += (pos == null || pos.isEmpty()) ? "" : pos.toString();
         text += "\n";
 
         text += "\nDependency tree :\n";
-        text += tree.toString();
+        text += (tree == null || tree.isEmpty()) ? "" : tree.toString();
 
         text += "\nUrl Extraction: \n";
-        text += urlContents;
+        text += (urlContents == null || urlContents.equals("")) ? "" : urlContents;
         text += "\n";
         
         return text;
