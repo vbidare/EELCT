@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import linking.Linker;
+import helper.*;
 import sentimentAnalysis.SentimentAnalyzerFactory;
 import sentimentAnalysis.SentimentAnalyzerInterface;
 import tagging.TagFactory;
@@ -64,7 +65,7 @@ public class Main {
         SentimentAnalyzerInterface sai = sentimentAnalyzerFactory.getSentimentAnalyzer("LIBSVM");
         sai.getSentiment(data);
 
-		 //Url Extractor
+	//Url Extractor
         UrlExtractor urlextractor = new UrlExtractor();
         try {
             urlextractor.getContents(data,"http://t.co/BNQ0Jk5x1O");
@@ -75,7 +76,5 @@ public class Main {
         }
         
         System.out.print(data);
-
-
-    }
+   }
 }
