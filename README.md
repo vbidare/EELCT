@@ -18,6 +18,7 @@
   fully qualified path name of the installation directory/twitter_nlp/
   eg - /home/abhi/twitter_nlp/
 - The entity recognizer takes some time to load the model files into memory, so please be patient!!!
+- The tweets to be processed should be kept in a file named 'tweetTmp.txt'(one tweet per line) in the directory where you are running the project from. If you are running the project from the command line this file should be present in the same folder as your Main.class file. Else if you are ruuning the project from Eclipse IDE, this file should be present in the root directory of your project. 
 
 ##Setup for Sentiment Analysis
 - The following python modules must be installed -
