@@ -22,7 +22,7 @@ public class WashingtonChunkerAndER implements ChunkerAndERInterface
 {
 	private static String INPUT_FILE_PLACEHOLDER = "inputFile";
 	private static String LAST_LINE = "Average time per tweet";
-	private static String BASE_DIR = "/home/abhi/Desktop/SummerProject/TwitterNLP/twitter_nlp/";
+	private static String BASE_DIR = "twitter_nlp-master/";
 	private static String[] COMMAND = 
 	{
 		"/bin/sh",

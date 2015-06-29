@@ -470,9 +470,6 @@ for result in predicted_class:
     else:
         target.write("Negative\n");
 
-print "Expected Class : ",expected_class,"Predicted Class : ", predicted_class
-print len(expected_class),len(predicted_class)
-
 from sklearn.metrics import precision_recall_fscore_support
 print precision_recall_fscore_support(np.asarray(expected_class), np.asarray(predicted_class))
 

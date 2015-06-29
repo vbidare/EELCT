@@ -12,8 +12,16 @@
 ## Setup for Entity and Chunk Extractor
 - The following package must be installed - 
     i. twitter_nlp : https://github.com/aritter/twitter_nlp
-- Make the environmet variable 'TWITTER_NLP' point to the installation directory
+- Make the environmet variable 'TWITTER_NLP' point to the installation directory. Make it usable system-wide and not user-specific.
+    eg - If the project directory is - /home/veerendra/summer-project/EELCT2, then TWITTER_NLP should be set to '/home/veerendra/summer-project/EELCT2/twitter_nlp-master'
 - While using the above package, make sure that the static String 'BASE_DIR' in WashingtonChunkerAndER.java contain the
   fully qualified path name of the installation directory/twitter_nlp/
   eg - /home/abhi/twitter_nlp/
 - The entity recognizer takes some time to load the model files into memory, so please be patient!!!
+
+##Setup for Sentiment Analysis
+- The following python modules must be installed -
+    i. nltk
+    ii. numpy
+    iii. scipy
+    iv. sklearn

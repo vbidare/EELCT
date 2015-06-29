@@ -49,11 +49,13 @@ public class Data {
         }
         
         // naba
-        text += "\n Chunks \n";
-        for (String chunk : chunkList)
-        {
-        	text += chunk + "\n";
-        }
+        text += "\nChunks \n";
+        if(chunkList.isEmpty()) System.out.println("Chunks list is empty");
+        else
+            for (String chunk : chunkList)
+            {
+                text += chunk + "\n";
+            }
 
         text += "\nClassification :\n";
         for (String s: category){

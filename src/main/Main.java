@@ -32,8 +32,6 @@ public class Main {
         Data data = new Data("Paul Walker's death came to me as a terrible shock");
         NERIdentifier.getEntities(data);
 
-        //Linking
-        new Linker().link(data, "wiki");
 
         //Classification
         ClassifyFactory classifyfactory = new ClassifyFactory();
@@ -44,13 +42,13 @@ public class Main {
         TagFactory tagfactory = new TagFactory();
         TagInterface tag = tagfactory.getTagger("ALCHEMY");
         tag.generateTags(data);
-//        
+//
 //        // Hashtag expansion
         HashtagExpanderFactory HEfactory = new HashtagExpanderFactory();
         HashtagExpanderInterface HExpander = HEfactory.getExpander();
-        data.hashtagExpanded = new ArrayList<Map.Entry<String, String>>(); 
+        data.hashtagExpanded = new ArrayList<Map.Entry<String, String>>();
         for (String hashtag: data.hashtags) {
-        	data.hashtagExpanded.add( 
+            data.hashtagExpanded.add(
         		new AbstractMap.SimpleEntry<String, String>(hashtag, HExpander.expand(hashtag))
         	);
         }
@@ -66,10 +64,13 @@ public class Main {
         SentimentAnalyzerFactory sentimentAnalyzerFactory= new SentimentAnalyzerFactory();
         SentimentAnalyzerInterface sai = sentimentAnalyzerFactory.getSentimentAnalyzer("LIBSVM");
         sai.getSentiment(data);
-        
+
         ChunkerAndERFactory cerFactory = new ChunkerAndERFactory();
         ChunkerAndERInterface cer = cerFactory.getCERInstance("WASHINGTON");
         cer.extractChunksAndEntity(data);
+
+        //Linking
+        new Linker().link(data, "wiki");
 
         //Url Extractor
         UrlExtractor urlextractor = new UrlExtractor();
