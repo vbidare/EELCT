@@ -17,12 +17,14 @@ public class Data {
     public ArrayList<Map.Entry<String, Integer>> tree;	//Dependency tree for the tweet
     public ArrayList<Map.Entry<String, String>> hashtagExpanded;	//Dependency tree for the tweet
     public ArrayList<String> sentimentOfTweets;
+    public String urlContents;             //Data retrived by crawling url
 
     public Data(String tweet){
         this.text = tweet;
         entitiesList = new ArrayList<Entity>();
         category = new ArrayList<String>();
         tags = new ArrayList<String>();
+
     }
 
     public String toString(){
@@ -62,6 +64,9 @@ public class Data {
 
         text += "\nDependency tree :\n";
         text += tree.toString();
+
+        text += "\nUrl Extraction: \n";
+        text += urlContents;
         text += "\n";
         
         return text;
